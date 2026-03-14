@@ -57,24 +57,24 @@ let categoriesProgram = [
   "home",
   "subscriptions",
 ];
-function calculateLargestCategory() {
-  let largestCategory = "";
-  let largestAmount = 0;
-  for (let i = 0; i < categoriesProgram.length; i++) {
-    let categoryExpense = calculateCategoryExpenses(categoriesProgram[i]);
-    if (categoryExpense > largestAmount) {
-      largestAmount = categoryExpense;
-      largestCategory = categoriesProgram[i];
-    }
-  }
-  return largestCategory;
-}
 
 let categoriesData = []; //Array para almacenar los datos de cada categoria y su balance más alto
 
 for (let i = 0; i < categoriesProgram.length; i++) {
-  categoriesData.push({
-    category: categoriesProgram[i],
-    total: calculateCategoryExpenses(categoriesProgram[i]),
-  });
+  let category = categoriesProgram[i];
+  let total = calculateCategoryExpenses(category);
+  categoriesData.push([category, total]);
+}
+
+function calculateLargestCategory() {
+  let largestCategory = "";
+  let largestAmount = 0;
+  for (let i = 0; i < categoriesData.length; i++) {
+    let categoryExpense = categoriesData[i][1];
+    if (categoryExpense > largestAmount) {
+      largestAmount = categoryExpense;
+      largestCategory = categoriesData[i][0];
+    }
+  }
+  return largestCategory;
 }
