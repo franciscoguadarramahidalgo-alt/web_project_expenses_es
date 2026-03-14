@@ -13,7 +13,7 @@ let expenseEntries = [
 
 for (let i = 0; i < expenseEntries.length; i++) {
   totalExpensesValue += expenseEntries[i][1]; //Suma del valor de cada gasto para formar el total
-  console.log("Valor total de los gastos: " + totalExpensesValue); //Revisión de valores en la consola
+  console.log("Valor total de los gastos: " + totalExpensesValue);
 }
 
 function calculateAverageExpense() {
@@ -78,3 +78,11 @@ function calculateLargestCategory() {
   }
   return largestCategory;
 }
+
+function addExpenseEntry(expenseEntry) {
+  expenseEntries.push(expenseEntry);
+  totalExpensesValue += expenseEntry[1];
+}
+
+let newExpenseEntry = ["groceries", 40];
+addExpenseEntry(newExpenseEntry);
