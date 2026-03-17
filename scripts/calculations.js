@@ -50,7 +50,7 @@ function calculateCategoryExpenses(category) {
   return total;
 }
 
-let categoriesProgram = [
+let categoriesList = [
   "groceries",
   "restaurants",
   "transport",
@@ -60,8 +60,8 @@ let categoriesProgram = [
 
 let categoriesData = []; //Array para almacenar los datos de cada categoria y su balance más alto
 
-for (let i = 0; i < categoriesProgram.length; i++) {
-  let category = categoriesProgram[i];
+for (let i = 0; i < categoriesList.length; i++) {
+  let category = categoriesList[i];
   let total = calculateCategoryExpenses(category);
   categoriesData.push([category, total]);
 }
@@ -69,11 +69,12 @@ for (let i = 0; i < categoriesProgram.length; i++) {
 function calculateLargestCategory() {
   let largestCategory = "";
   let largestAmount = 0;
-  for (let i = 0; i < categoriesData.length; i++) {
-    let categoryExpense = categoriesData[i][1];
+  for (let i = 0; i < categoriesList.length; i++) {
+    let category = categoriesList[i];
+    let categoryExpense = calculateCategoryExpenses(category);
     if (categoryExpense > largestAmount) {
       largestAmount = categoryExpense;
-      largestCategory = categoriesData[i][0];
+      largestCategory = category;
     }
   }
   return largestCategory;
@@ -84,5 +85,5 @@ function addExpenseEntry(expenseEntry) {
   totalExpensesValue += expenseEntry[1];
 }
 
-let newExpenseEntry = ["groceries", 40];
+let newExpenseEntry = ["home", 40];
 addExpenseEntry(newExpenseEntry);
